@@ -179,7 +179,7 @@ The directory includes five tests for the counter user-project example:
 	$display("LA Test 1 started");
 	```
 	
-* Then, the firmware configures the logic analyzer (LA) probes `[31:0]` as inputs to the management SoC to monitor the counter value, and configure the logic analyzer probes `[63:32]` as outputs from the management SoC (inputs to the user_proj_example) to set the counter initial value. This is done by writing to the LA probes enable registers.   Note that the output enable is active low, while the input enable is active high.  Every channel can be configured for input, output, or both independently.
+* Then, the firmware configures the logic analyzer (LA) probes `[31:0]` as inputs to the management SoC to monitor the counter value, and configure the logic analyzer probes `[63:32]` as outputs from the management SoC (inputs to the user_project) to set the counter initial value. This is done by writing to the LA probes enable registers.   Note that the output enable is active low, while the input enable is active high.  Every channel can be configured for input, output, or both independently.
 
  
 	```c
@@ -209,7 +209,7 @@ The directory includes five tests for the counter user-project example:
   
 ### Logic Analyzer Test 2
  
-* This test is meant to verify that we can drive the clock and reset signals for the user project example through the logic analyzer. In the [user_proj_example](verilog/rtl/user_proj_example.v) RTL, the clock can either be supplied from the `wb_clk_i` or from the logic analyzer through bit `[64]`. Similarly, the reset signal can be supplied from the `wb_rst_i` or through `LA[65]`.  The firmware configures the clk and reset LA probes as outputs from the management SoC by writing to the LA2 enable register. 
+* This test is meant to verify that we can drive the clock and reset signals for the user project example through the logic analyzer. In the [user_project](verilog/rtl/user_project.v) RTL, the clock can either be supplied from the `wb_clk_i` or from the logic analyzer through bit `[64]`. Similarly, the reset signal can be supplied from the `wb_rst_i` or through `LA[65]`.  The firmware configures the clk and reset LA probes as outputs from the management SoC by writing to the LA2 enable register. 
 
 	```c
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
