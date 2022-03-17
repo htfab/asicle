@@ -1,5 +1,8 @@
-precheck_results
-*.hex*
+*~
+*.swp
 *.lst
 *.vcd
 *.gtkw
+precheck_results
+mgmt_core_wrapper
+openlane/Makefile
