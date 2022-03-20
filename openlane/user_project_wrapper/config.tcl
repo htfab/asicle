@@ -20,10 +20,10 @@ set ::env(PDK) "sky130A"
 set ::env(STD_CELL_LIBRARY) "sky130_fd_sc_hd"
 
 # YOU ARE NOT ALLOWED TO CHANGE ANY VARIABLES DEFINED IN THE FIXED WRAPPER CFGS 
-source $::env(CARAVEL_ROOT)/openlane/user_project_wrapper/fixed_wrapper_cfgs.tcl
+source $::env(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/fixed_wrapper_cfgs.tcl
 
 # YOU CAN CHANGE ANY VARIABLES DEFINED IN THE DEFAULT WRAPPER CFGS BY OVERRIDING THEM IN THIS CONFIG.TCL
-source $::env(CARAVEL_ROOT)/openlane/user_project_wrapper/default_wrapper_cfgs.tcl
+source $::env(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/default_wrapper_cfgs.tcl
 
 set script_dir [file dirname [file normalize [info script]]]
 
@@ -54,6 +54,15 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+	$script_dir/../../verilog/rtl/debounce.v \
+	$script_dir/../../verilog/rtl/wordlist.v \
+	$script_dir/../../verilog/rtl/eval.v \
+	$script_dir/../../verilog/rtl/control.v \
+	$script_dir/../../verilog/rtl/vga.v \
+	$script_dir/../../verilog/rtl/square.v \
+	$script_dir/../../verilog/rtl/frame.v \
+	$script_dir/../../verilog/rtl/display.v \
+	$script_dir/../../verilog/rtl/top.v \
 	$script_dir/../../verilog/rtl/user_project.v"
 
 set ::env(EXTRA_LEFS) "\
@@ -62,8 +71,7 @@ set ::env(EXTRA_LEFS) "\
 set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/user_project.gds"
 
-# set ::env(GLB_RT_MAXLAYER) 5
-set ::env(RT_MAX_LAYER) {met4}
+set ::env(GLB_RT_MAXLAYER) 5
 
 # disable pdn check nodes becuase it hangs with multiple power domains.
 # any issue with pdn connections will be flagged with LVS so it is not a critical check.
